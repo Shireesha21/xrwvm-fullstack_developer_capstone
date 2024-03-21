@@ -57,6 +57,7 @@ def logout_request(request):
     print("Log out the user `{}`".format(request.user.username))
     # Logout user in the request
     logout(request)
+    messages.success(request, "You have been successfully logged out.")
     # Redirect user back to course list view
     return redirect('djangoapp:index')
 
