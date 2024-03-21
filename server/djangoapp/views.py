@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-# from .models import related models
-# from .restapis import related methods
+from .models import CarMake, CarModel
+#from .restapis import related methods
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
 import logging
 import json
-from .models import CarMake, CarModel
+from django.http import JsonResponse
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -102,21 +103,35 @@ def get_dealerships(request):
         return render(request, 'djangoapp/index.html', context)
 
 
-
-
 def get_cars(request):
+    # Call the initiate function before accessing CarMake and CarModel objects
+    initiate()
+
+    # Count the number of car makes
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+
+    # If no car makes exist, call the initiate function again
+    if count == 0:
         initiate()
-    car_models = CarModel.objects.select_related('car_make')
+
+    # Fetch car models and related car makes
+    car_models = CarModel.objects.select_related('make')
     cars = []
     for car_model in car_models:
         cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
-    return JsonResponse({"CarModels":cars})
+
+    # Return JSON response with car models
+    return JsonResponse({"CarModels": cars})
+
 
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
+
+
+
+
+
 
 

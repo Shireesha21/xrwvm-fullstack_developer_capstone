@@ -24,12 +24,10 @@ urlpatterns = [
     # path for logout
     path('logout', views.logout_request, name='logout'),
 
-    # path for home, index page
-    path(route='', view=views.get_dealerships, name='index'),
-
-        path(route='get_cars', view=views.get_cars, name ='getcars'),
+    path(route='get_cars', view=views.get_cars, name ='getcars'),
 
     # path for dealer reviews view
+    path(route='', view=views.get_dealerships, name='index'),
 
     # path for add a review view
 
