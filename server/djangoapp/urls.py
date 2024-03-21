@@ -27,6 +27,8 @@ urlpatterns = [
     # path for home, index page
     path(route='', view=views.get_dealerships, name='index'),
 
+        path(route='get_cars', view=views.get_cars, name ='getcars'),
+
     # path for dealer reviews view
 
     # path for add a review view
