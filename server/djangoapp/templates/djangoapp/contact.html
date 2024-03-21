@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealership Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Additional CSS styles */
+
+
+        .nav-item .nav-link {
+            color: #fff;
+        }
+
+        .bg-dark{
+            background-color: #AA4A44;
+        }
+
+        .navbar-brand {
+            color: #fff; /* Navbar brand color */
+            font-size: 1.5rem; /* Navbar brand font size */
+        }
+
+        .navbar-nav .nav-link {
+            color: #AA4A44; /* Link color */
+            font-size: 1.2rem; /* Navbar link font size */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: red; /* Hover color */
+        }
+
+        .banner {
+            padding: 20px; /* Add padding to the welcome banner */
+            background-color: #AA4A44; /* Dark gray background color */
+            color: white; /* Text color */
+            text-align: center; /* Center align text */
+        }
+
+        .title {
+            font-size: 1.5rem; /* Title font size */
+            font-weight: bold; /* Bold font weight */
+        }
+
+    </style>
+</head>
+
+<body style="background-color: #f8f9fa;">
+<!--Add a nav bar here -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <h2 class="navbar-brand">Dealerships</h2>
+            <ul class="nav justify-content-end nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'djangoapp:about' %}"  >About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'djangoapp:contact' %}" >Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">{{ user.first_name }}({{ user.username }})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'djangoapp:logout' %}">Logout</a> 
+                </li>
+                {% endif %}
+            </ul>
+    </div>
+</nav>
+
+<!-- Contact Form -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Contact Us</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

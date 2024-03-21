@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealership Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <style>
+        /* Additional CSS styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+
+        .bg-dark{
+            background-color: #AA4A44;
+        }
+
+        .navbar-brand {
+            color: #fff; /* Navbar brand color */
+            font-size: 1.5rem; /* Navbar brand font size */
+        }
+
+        .navbar-nav .nav-link {
+            color: #AA4A44; /* Link color */
+            font-size: 1.2rem; /* Navbar link font size */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: red; /* Hover color */
+        }
+
+        .banner {
+            padding: 20px; /* Add padding to the welcome banner */
+            background-color: #AA4A44; /* Dark gray background color */
+            color: white; /* Text color */
+            text-align: center; /* Center align text */
+        }
+
+        .card-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: calc(100vh - 1in); /* Calculate height excluding navbar height */
+            margin-top: 20px; /* Add margin top */
+        }
+
+        .card {
+            width: 80%;
+            max-width: 400px; /* Max width for better responsiveness */
+            background-color: #fff; /* Card background color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+        }
+
+        .card img {
+            width: 100%; /* Ensure image fills the container */
+            border-top-left-radius: 10px; /* Rounded corners for top left */
+            border-top-right-radius: 10px; /* Rounded corners for top right */
+        }
+
+        .card-body {
+            padding: 20px; /* Add padding inside the card body */
+            text-align: center; /* Center align content within the card body */
+        }
+
+        .title {
+            font-size: 1.5rem; /* Title font size */
+            font-weight: bold; /* Bold font weight */
+        }
+
+        .card-text {
+            color: black; /* Text color for description */
+            font-size: 1.1rem; /* Description font size */
+        }
+    </style>
+</head>
+
+<body>
+<!--Add a nav bar here -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h2 class="navbar-brand">Dealerships</h2>
+                <ul class="nav justify-content-end nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'djangoapp:about' %}"  >About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:contact' %}" >Contact</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:logout' %}">Logout</a> 
+                    </li>
+                    {% endif %}
+                </ul>
+        </div>
+    </nav>
+
+    <div class="banner" name="about-header">
+        Welcome to Best Cars dealership, home to the best cars in North America. We deal in sale of domestic and imported cars at reasonable prices.
+    </div>
+      
+    <div class="card-container">
+        <div class="card">
+            <img class="card-img-top" src="/static/Tom.png" alt="Card image">
+            <div class="card-body">
+                <p class="title">Tommy</p>
+                <p>Full Stack Developer</p>
+                <p class="card-text">All the development work was done by me</p>
+                <p>tommy@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</body>
+    
